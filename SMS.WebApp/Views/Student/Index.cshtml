@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SMS.WebApp.Models.Student>
+@{
+    int idNo = 1;
+}
+<a asp-action="CreateOrEdit" asp-controller="Student" class="btn btn-sm btn-success m-3">Create Student</a>
+<div class="container">
+    <div class="row">
+        <table class="table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                   
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach(var item in Model){
+                <tr>
+                    <td>@idNo</td>
+                    <td>@item.Name</td>
+                    <td>@item.Address</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Email</td>
+                    <td>
+                            <a asp-action="CreateOrEdit" asp-controller="Student" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                            <a asp-action="Details" asp-controller="Student" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                            <a asp-action="Delete" asp-controller="Student" asp-route-id="@item.Id" onclick="return confirm('Are you sure delete this item?')" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                idNo++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
