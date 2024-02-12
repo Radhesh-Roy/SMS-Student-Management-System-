@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SMS.WebApp.Models.Teacher>
+@{
+    int id = 1;
+}
+
+<div class="container-sm">
+
+        <div class="container ">
+            <div class="card shadow bg-body-tertiary rounded mt-5 " style="margin-bottom: -25px;">
+                <div class="card-body bg-light text-black rounded">
+                 <div class="text">
+                  <h4 class="text-center">Teacher Details</h4>
+                  
+                </div>
+                <div class="d-flex justify-content-end">
+                    <a asp-action="CreateAndEdit" asp-controller="Teacher" type="button" class="btn btn-primary ">Add Teacher</a>
+                </div>
+                
+                </div>
+              </div>
+        </div>
+
+        <table class="table table-bordered table-hover shadow">
+            <thead class="thead-dark">
+              <tr >
+                <th scope="col"  class="pt-4">SL</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Qualification</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            @foreach(var item in Model)
+            {
+
+                <tr>
+                    <th scope="row">@id</th>
+                    <td>@item.Name</td>
+                    <td>@item.Address</td>
+                    <td>@item.Qualification</td>
+                    <td>@item.Email</td>
+                    <td>@item.Phone</td>
+                    <td>
+                        <a asp-action="CreateAndEdit" asp-controller="Teacher" asp-route-id="@item.Id" type="button" class="btn btn-primary">Edit</a>
+                        <a asp-action="Details" asp-controller="Teacher" asp-route-id="@item.Id" type="button" class="btn btn-info">Details</a>
+                        <a asp-action="Delete" asp-controller="Teacher" asp-route-id="@item.Id" onclick="return confirm('are you sure')"  type="button" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                id++;
+            }
+
+            </tbody>
+          </table>
+    </div>
